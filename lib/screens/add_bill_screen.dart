@@ -15,16 +15,27 @@ class _AddBillScreenState extends State<AddBillScreen> {
   final _formKey = GlobalKey<FormState>();
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
+  final _numberOfItemsController = TextEditingController();
+  final _numberOfPersonsController = TextEditingController();
+  final _usersController = TextEditingController();
 
   void _submitBill() {
     if (_formKey.currentState!.validate()) {
       final title = _titleController.text;
       final amount = double.parse(_amountController.text);
+      final numberOfItems = int.parse(_numberOfItemsController.text);
+      final numberOfPersons = int.parse(_numberOfPersonsController.text);
+      final users = _usersController.text.split(',');
 
       final newBill = Bill(
         id: DateTime.now().toString(),
         title: title,
         amount: amount,
+        isActive: true,
+        date: DateTime.now(),
+        numberOfItems: numberOfItems,
+        numberOfPersons: numberOfPersons,
+        users: users,
       );
 
       widget.billService.addBill(newBill);
@@ -93,6 +104,74 @@ class _AddBillScreenState extends State<AddBillScreen> {
                     }
                     if (double.tryParse(value) == null) {
                       return 'Harap masukkan angka yang valid';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 16),
+                TextFormField(
+                  controller: _numberOfItemsController,
+                  decoration: InputDecoration(
+                    labelText: 'Jumlah Item',
+                    labelStyle: TextStyle(color: Color(0xFF0F1035)),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xFF7FC7D9)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xFF365486)),
+                    ),
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Harap masukkan jumlah item';
+                    }
+                    if (int.tryParse(value) == null) {
+                      return 'Harap masukkan angka yang valid';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 16),
+                TextFormField(
+                  controller: _numberOfPersonsController,
+                  decoration: InputDecoration(
+                    labelText: 'Jumlah Orang',
+                    labelStyle: TextStyle(color: Color(0xFF0F1035)),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xFF7FC7D9)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xFF365486)),
+                    ),
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Harap masukkan jumlah orang';
+                    }
+                    if (int.tryParse(value) == null) {
+                      return 'Harap masukkan angka yang valid';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 16),
+                TextFormField(
+                  controller: _usersController,
+                  decoration: InputDecoration(
+                    labelText: 'Daftar User (pisahkan dengan koma)',
+                    labelStyle: TextStyle(color: Color(0xFF0F1035)),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xFF7FC7D9)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xFF365486)),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Harap masukkan daftar user';
                     }
                     return null;
                   },

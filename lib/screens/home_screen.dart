@@ -100,13 +100,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Color(0xFF365486), Color(0xFF0F1035)],
+            colors: [Color.fromARGB(255, 235, 235, 235), Color.fromARGB(255, 253, 253, 253)],
           ),
         ),
         child: TabBarView(
           controller: _tabController,
           children: [
-            // Tab Active Bills
+
             FadeTransition(
               opacity: _fadeAnimation,
               child: SlideTransition(
@@ -117,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     final bill = _billService.activeBills[index];
                     return BillItem(
                       bill,
-                      // onComplete: () => _markBillAsCompleted(bill.id),
+                      onComplete: () => _markBillAsCompleted(bill.id),
                     );
                   },
                 ),
@@ -145,17 +145,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         children: [
           FloatingActionButton(
             onPressed: () async {
-              final imagePath = await Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (ctx) => ReceiptCameraScreen(),
-                ),
-              );
+              // final imagePath = await Navigator.of(context).push(
+              //   MaterialPageRoute(
+              //     builder: (ctx) => ReceiptCameraScreen(),
+              //   ),
+              // );
 
-              if (imagePath != null) {
-                // Proses deteksi teks
-              }
+              // if (imagePath != null) {
+              //   // Proses deteksi teks
+              // }
             },
-            backgroundColor: Color(0xFF365486),
+            backgroundColor: Color.fromARGB(255, 86, 116, 168),
             child: Icon(Icons.camera_alt, color: Colors.white),
           ),
           SizedBox(width: 16),

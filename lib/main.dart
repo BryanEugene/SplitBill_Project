@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'screens/login_screen.dart'; // Import halaman Login
 import 'screens/register_screen.dart'; // Import halaman Register
 import 'screens/home_screen.dart'; // Import halaman Home
+import 'screens/loading_screen.dart'; // Import halaman Loading
 
 void main() {
   runApp(MyApp());
+  
 }
 
 class MyApp extends StatelessWidget {
@@ -21,6 +23,7 @@ class MyApp extends StatelessWidget {
         '/home': (ctx) => HomeScreen(), // Route untuk HomeScreen
         '/login': (ctx) => LoginScreen(), // Route untuk LoginScreen
         '/register': (ctx) => RegisterScreen(), // Route untuk RegisterScreen
+        '/loading': (ctx) => LoadingScreen(), // Route untuk LoadingScreen
       },
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:namer_app/screens/loading_screen.dart';
 import 'home_screen.dart'; // Import halaman Home
 import 'register_screen.dart'; // Import halaman Register
 
@@ -118,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
                             onPressed: () {
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
-                                  builder: (ctx) => HomeScreen(),
+                                  builder: (ctx) => LoadingScreen(),
                                 ),
                               );
                             },
